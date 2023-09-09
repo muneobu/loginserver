@@ -17,6 +17,13 @@ function login() {
     },
     body: JSON.stringify(req),
   })
-    .then((toma) => toma.json())
-    .then((bana) => console.log(bana));
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.message === "login success") {
+        location.href = "/";
+      } else {
+        alert(res.message);
+      }
+    })
+    .catch((err) => console.error(new Error()));
 }
