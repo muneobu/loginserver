@@ -8,6 +8,7 @@ const data = {
   pw: ["bb", "tt", "cc"],
 };
 
+const response = {};
 apple.get("/", control.home);
 apple.get("/login", control.login);
 
@@ -15,12 +16,18 @@ apple.post("/login", (req, res) => {
   if (data.id.includes(req.body.id)) {
     const idx = data.id.indexOf(req.body.id);
     if (data.pw[idx] === req.body.pw) {
-      res.send({ message: "login success" });
+      response.success = true;
+      response.msg = "login success";
+      console.log(response);
+      res.json(response);
     } else {
-      res.send({ message: "wrong password" });
+      response.success = false;
+      response.msg = "wrong password";
+      console.log(response);
+      res.json(response);
     }
   } else {
-    res.send({ message: "존재하지 않는 아이디입니다" });
+    res.json({ msg: "존재하지 않는 아이디입니다" });
   }
 });
 

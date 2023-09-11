@@ -19,11 +19,12 @@ function login() {
   })
     .then((res) => res.json())
     .then((res) => {
-      if (res.message === "login success") {
+      console.log(res);
+      if (res.msg === "login success") {
         location.href = "/";
       } else {
-        alert(res.message);
+        alert(res.msg);
       }
-    })
-    .catch((err) => console.error(new Error()));
+    });
+  // .catch((err) => console.error(new Error()));
 }
