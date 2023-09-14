@@ -2,20 +2,19 @@ const e = require("express");
 const express = require("express");
 const apple = express.Router();
 const control = require("../control/control.js");
+const userStorage = require("../model/userStorage.js");
 
-const data = {
-  id: ["banana", "tomato", "cherry"],
-  pw: ["bb", "tt", "cc"],
-};
+const data = userStorage;
+// const data = new userStorage();
 
 const response = {};
 apple.get("/", control.home);
 apple.get("/login", control.login);
 
 apple.post("/login", (req, res) => {
-  if (data.id.includes(req.body.id)) {
-    const idx = data.id.indexOf(req.body.id);
-    if (data.pw[idx] === req.body.pw) {
+  if (data.data.id.includes(req.body.id)) {
+    const idx = data.data.id.indexOf(req.body.id);
+    if (data.data.pw[idx] === req.body.pw) {
       response.success = true;
       response.msg = "login success";
       console.log(response);
