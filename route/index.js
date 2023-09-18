@@ -12,7 +12,7 @@ apple.get("/", control.home);
 apple.get("/login", control.login);
 
 apple.post("/login", (req, res) => {
-  userStorage.getUsers("id", "pss");
+  userStorage.getUsers("id", "pw");
   if (data.data.id.includes(req.body.id)) {
     const idx = data.data.id.indexOf(req.body.id);
     if (data.data.pw[idx] === req.body.pw) {
